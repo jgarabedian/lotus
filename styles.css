@@ -34,7 +34,8 @@ h1, h2, h3, .serif {
 
 /* Header */
 .header {
-  padding: 1.25rem 1.25rem 0.75rem;
+  padding: 1.1rem 1.25rem 0.85rem;
+  padding-top: calc(1.1rem + env(safe-area-inset-top, 0px));
   border-bottom: 1px solid var(--cream-dark);
   background: var(--cream);
   position: sticky;
@@ -93,8 +94,7 @@ h1, h2, h3, .serif {
 /* Views */
 .view {
   display: none;
-  padding: 1.25rem;
-  padding-bottom: 5rem;
+  padding: 1.5rem 1.25rem 5rem;
   animation: fadeIn 0.25s ease;
 }
 
