@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#F7F3EC" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Lotus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <div class="logo serif">Lotus</div>
+        <div class="tagline">Maui · decisions & receipts</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <button data-view="decide" class="active">Decide</button>
+      <button data-view="map">Map</button>
+      <button data-view="log">Log</button>
+    </nav>
+  </header>
+
+  <!-- DECIDE VIEW -->
+  <section id="view-decide" class="view active">
+    <div class="decision-form">
+      <div class="field">
+        <label>Time of day</label>
+        <div class="chips" id="time-chips">
+          <button class="chip" data-value="morning">Morning</button>
+          <button class="chip" data-value="midday">Midday</button>
+          <button class="chip" data-value="afternoon">Afternoon</button>
+          <button class="chip" data-value="evening">Evening</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Energy</label>
+        <div class="chips" id="energy-chips">
+          <button class="chip" data-value="high">High</button>
+          <button class="chip" data-value="medium">Medium</button>
+          <button class="chip" data-value="low">Recovery</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Focus</label>
+        <div class="chips" id="focus-chips">
+          <button class="chip" data-value="movement">Movement</button>
+          <button class="chip" data-value="food">Food</button>
+          <button class="chip" data-value="explore">Explore</button>
+          <button class="chip" data-value="chill">Chill</button>
+          <button class="chip" data-value="mix">Mix</button>
+        </div>
+      </div>
+      <button class="btn-primary" id="decide-btn" disabled>What should I do?</button>
+    </div>
+
+    <div id="suggestions" class="suggestions"></div>
+    <div id="decide-empty" class="empty-state" style="display:none;">
+      The island is waiting for your criteria.<br>Select time, energy, and focus.
+    </div>
+  </section>
+
+  <!-- MAP VIEW -->
+  <section id="view-map" class="view">
+    <div class="map-filters" id="map-filters">
+      <button class="chip selected" data-filter="all">All</button>
+      <button class="chip" data-filter="run">Runs</button>
+      <button class="chip" data-filter="hike">Hikes</button>
+      <button class="chip" data-filter="eat">Eat</button>
+      <button class="chip" data-filter="beach">Beaches</button>
+    </div>
+    <div id="map"></div>
+    <p class="footer-note">Tap a marker for details. The map does not care about your itinerary.</p>
+  </section>
+
+  <!-- LOG VIEW -->
+  <section id="view-log" class="view">
+    <div class="quick-add">
+      <h3 class="serif">Quick log</h3>
+      <input type="text" id="log-title" placeholder="What did you do?" />
+      <select id="log-type">
+        <option value="run">Run</option>
+        <option value="hike">Hike</option>
+        <option value="eat">Eat</option>
+        <option value="beach">Beach</option>
+        <option value="other">Other</option>
+      </select>
+      <textarea id="log-notes" placeholder="Optional notes (the island is listening)"></textarea>
+      <select id="log-rating">
+        <option value="5">★★★★★</option>
+        <option value="4">★★★★</option>
+        <option value="3" selected>★★★</option>
+        <option value="2">★★</option>
+        <option value="1">★</option>
+      </select>
+      <button class="btn-primary" id="add-log-btn" style="margin-top:0.4rem;">Log it</button>
+    </div>
+
+    <div class="log-header">
+      <h3 class="serif">Your receipts</h3>
+      <div class="log-stats" id="log-stats"></div>
+    </div>
+    <div id="log-list"></div>
+    <div id="log-empty" class="empty-state">
+      Nothing logged yet.<br>The island is still forming an opinion.
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
